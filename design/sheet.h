@@ -21,14 +21,30 @@ public:
     void PrintValues(std::ostream& output) const override;
     void PrintTexts(std::ostream& output) const override;
 
-    const Cell* GetConcreteCell(Position pos) const;
-    Cell* GetConcreteCell(Position pos);
+	// Можете дополнить ваш класс нужными полями и методами
+    
+   
+    bool IsNoCiclesCreate(Position pos, const std::vector<Position>& outgoing_edges) const;
+    
+    void Invalide_Values(const std::set<Position>& parents);
 
-private:
-    void MaybeIncreaseSizeToIncludePosition(Position pos);
-    void PrintCells(std::ostream& output,
-                    const std::function<void(const CellInterface&)>& printCell) const;
-    Size GetActualSize() const;
 
-    std::vector<std::vector<std::unique_ptr<Cell>>> cells_;
+    private:
+    
+
+    // Можете дополнить ваш класс нужными полями и методами
+    
+    void AddEmptyColumns(int n);
+    void AddEmptyRows(int n);
+    void AddEmptyRows(int row, int col); 
+
+    std::vector<std::vector<std::unique_ptr<CellInterface>>> cells_;
+    
+    /*std::map<int, int> filled_rows_;
+    std::map<int, int> filled_cols_;
+    int max_row_ = -1;
+    int max_col_ = -1;
+    */
+
+   
 };

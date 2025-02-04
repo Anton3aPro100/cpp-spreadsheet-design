@@ -7,6 +7,8 @@
 #include <functional>
 #include <stdexcept>
 
+
+
 namespace ASTImpl {
 class Expr;
 }
@@ -22,9 +24,11 @@ public:
     FormulaAST& operator=(FormulaAST&&) = default;
     ~FormulaAST();
 
-    double Execute() const;
+    Value Execute(const SheetInterface& sheet) const;
     void Print(std::ostream& out) const;
     void PrintFormula(std::ostream& out) const;
+    
+    std::vector<Position> GetReferencedCells() const;
 
 private:
     std::unique_ptr<ASTImpl::Expr> root_expr_;
